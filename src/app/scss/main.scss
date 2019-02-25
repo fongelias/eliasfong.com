@@ -1,6 +1,10 @@
 /*-- Variables -- */
 	/*-- Colors --*/
 	$transparent: rgba(0,0,0,0);
+	$dark-grey: #323232;
+	$oat-milk: #f6f1eb;
+	/*-- Fonts --*/
+	$OpenSans: 'Open Sans', sans-serif;
 /*-- Mixins --*/
 @import './mixins/__flexbox';
 @import './mixins/__animate';
@@ -27,7 +31,7 @@ body {
 	@include justify-content(flex-start);
 	@include align-items(stretch);
 	@include align-content(stretch);
-	background: white;
+	background: $oat-milk;
 }
 
 #root {
@@ -36,3 +40,30 @@ body {
 }
 
 /*-- Pages --*/
+.landingPage {
+	.header-container {
+		@include flexbox;
+		@include flex-direction(column);
+		@include justify-content(center);
+		@include align-items(center);
+		height: 90vh;
+	}
+
+	h1 {
+		font-family: $OpenSans;
+		font-size: 20px;
+		font-weight: 600;
+		letter-spacing: 0.5em;
+		margin-right: -0.5em; /* offset last letter's letter-spacing */
+	}
+
+	h2 {
+		font-family: $OpenSans;
+	}
+
+	.efLogo {
+		height: 30vh;
+		padding-right: 23px;
+		fill: $dark-grey;
+	}
+}

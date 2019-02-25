@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import { PATHNAME } from './PATHNAME';
+// svgs
+import EFLogo from '../../../svg/ef_logo.svg';
 
 
 export class LandingPage extends Component {
@@ -14,7 +16,12 @@ export class LandingPage extends Component {
 
 	render() {
 		return (
-			<div className="landingPage"></div>
+			<div className="landingPage">
+				<header className="header-container">
+					<EFLogo className="efLogo"/>
+					<h1>ELIAS FONG</h1>
+				</header>
+			</div>
 		);
 	}
 }
