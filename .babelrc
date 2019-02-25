@@ -1,0 +1,21 @@
+{
+  "env":{
+    "dev":{
+      "presets":[
+        "env",
+        "react"
+      ]
+    },
+    "prod":{
+      "presets":[
+        "env",
+        "react"
+      ]
+    },
+    "test":{
+      "presets":[
+        "env"
+      ]
+    }
+  }
+}
