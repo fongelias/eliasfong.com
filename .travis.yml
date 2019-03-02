@@ -3,3 +3,12 @@ node_js:
   - 9.10.1
 before_script:
   - npm run build:dev
+before_deploy:
+  - npm run build:prod
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: eliasfong.com
+    skip_cleanup: true
+    local_dir: prod/public
