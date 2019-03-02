@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 //Config
-const appOutputPath = "../dev/public";
+const appOutputPath = "../prod/public";
 
 //Modules
 const appConfig = {
