@@ -1,4 +1,5 @@
 //Dependencies
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
@@ -29,6 +30,9 @@ const appConfig = {
 		new HtmlWebpackPlugin({
 			template: './src/app/index.html'
 		}),
+		new CopyWebpackPlugin([
+			{from: './src/app/favicon.ico', to: 'favicon.ico'},
+		]),
 		new ExtractTextPlugin({
 			filename: 'css/[name].[chunkhash].css',
 			allChunks: true

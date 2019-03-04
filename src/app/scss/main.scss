@@ -1,8 +1,11 @@
 /*-- Variables -- */
 	/*-- Colors --*/
 	$transparent: rgba(0,0,0,0);
+	$light-grey: #9d9c9c;
 	$dark-grey: #323232;
 	$oat-milk: #f6f1eb;
+	$rust: #c33625;
+	$muted-rust: #c48077;
 	/*-- Fonts --*/
 	$OpenSans: 'Open Sans', sans-serif;
 /*-- Mixins --*/
@@ -39,6 +42,48 @@ body {
 	overflow-x: hidden;
 }
 
+/*-- Base --*/
+.navContainer {
+	@include flexbox;
+	@include flex-direction(row);
+	@include justify-content(flex-end);
+	
+	width: 100%;
+	padding: 0 4vw;
+}
+
+.navLink {
+	font-family: $OpenSans;
+	padding: 10px;
+	text-decoration: none;
+	cursor: pointer;
+	color: $light-grey;
+	@include transition(all 0.3s ease);
+
+	&:visited {
+		color: $light-grey;
+	}
+
+	&:hover {
+		color: $dark-grey;
+	}
+}
+
+.inlineLink {
+	text-decoration: none;
+	cursor: pointer;
+	color: $muted-rust;
+	@include transition(all 0.3s ease);
+
+	&:visited {
+		color: $muted-rust;
+	}
+
+	&:hover {
+		color: $rust;
+	}
+}
+
 /*-- Pages --*/
 .landingPage {
 	.header-container {
@@ -65,5 +110,17 @@ body {
 		height: 30vh;
 		padding-right: 23px;
 		fill: $dark-grey;
+	}
+}
+
+.aboutPage {
+	.aboutContainer {
+		@include flexbox;
+		@include flex-direction(column);
+		@include justify-content(center);
+		@include align-items(center);
+
+		font-family: $OpenSans;
+		height: 80vh;
 	}
 }
