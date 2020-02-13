@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-
-import { PATHNAME } from './PATHNAME';
+import { NavBar } from '../presentational';
 
 
 
@@ -12,18 +10,13 @@ export class AboutPage extends Component {
 
 	constructor() {
 		super();
+		console.log('this was updated on 2/13/20, 12:53');
 	}
 
 	render() {
 		return (
 			<div className="aboutPage">
-				<nav>
-					<span className="navContainer">
-						<NavLink to={PATHNAME.LANDING_PAGE} className="navLink" activeClassName="active">home</NavLink>
-						<NavLink to={PATHNAME.FAKE_NEWS_PAGE} className="navLink" activeClassName="active">fake news</NavLink>
-						<NavLink to={PATHNAME.PROJECTS_PAGE} className="navLink" activeClassName="active">projects</NavLink>
-					</span>
-				</nav>
+				<NavBar />
 				<div className="aboutContainer">
 					<div className="innerContainer">
 						<p>I make things. You'll find them <Link to={PATHNAME.PROJECTS_PAGE} className="inlineLink">here</Link>.</p>
