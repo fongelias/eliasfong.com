@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { NavBar, PATHNAME } from '../presentational';
-
 
 
 export class AboutPage extends Component {
