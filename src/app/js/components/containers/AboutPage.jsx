@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavBar } from '../presentational';
+import { NavBar, PATHNAME } from '../presentational';
 
 
 
