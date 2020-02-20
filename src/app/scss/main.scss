@@ -14,6 +14,7 @@
 /*-- Primary Containers --*/
 * {
 	box-sizing: border-box;
+	font-family: $OpenSans, sans-serif;
 }
 
 html, body {
@@ -53,7 +54,6 @@ body {
 }
 
 .navLink {
-	font-family: $OpenSans;
 	padding: 10px;
 	text-decoration: none;
 	cursor: pointer;
@@ -95,15 +95,10 @@ body {
 	}
 
 	h1 {
-		font-family: $OpenSans;
 		font-size: 20px;
 		font-weight: 600;
 		letter-spacing: 0.5em;
 		margin-right: -0.5em; /* offset last letter's letter-spacing */
-	}
-
-	h2 {
-		font-family: $OpenSans;
 	}
 
 	.efLogo {
@@ -120,7 +115,34 @@ body {
 		@include justify-content(center);
 		@include align-items(center);
 
-		font-family: $OpenSans;
 		height: 80vh;
+	}
+}
+
+.projectPage {
+	.projectContainer {
+		height: 80vh;
+	}
+}
+
+/*-- Layout Components --*/
+.flexBox {
+	@include flexbox;
+	@include flex-direction(row);
+	@include justify-content(center);
+	@include align-items(center);
+	
+	&.flexBox--direction-column {
+		@include flex-direction(column);
+	}
+}
+
+.collapsibleContainer {
+	@include transition(all 0.3s ease);
+	overflow: hidden;
+	max-height: 50vh;
+
+	&.isCollapsed {
+		max-height: 0vh;
 	}
 }

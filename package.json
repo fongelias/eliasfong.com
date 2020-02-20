@@ -48,6 +48,7 @@
     "webpack": "^3.11.0"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "express": "^4.16.3"
   }
 }
