@@ -2,7 +2,7 @@ import React from 'react';
 import { FlexBox, ProjectSection, PROJECT_MANIFEST } from '..';
 
 export const ProjectSectionList = () => (
-    <FlexBox column>
+    <FlexBox column className="maxWidth">
         {
             PROJECT_MANIFEST.map(section => (
                 <ProjectSection

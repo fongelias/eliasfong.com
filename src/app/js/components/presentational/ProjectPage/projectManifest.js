@@ -16,7 +16,10 @@ class Project {
 // Projects
 const DATING_GAMES = new Project(
     'Dating Games',
-    'https://medium.com/swlh/dating-games-699e56dbb152'
+    {
+        address: 'https://medium.com/swlh/dating-games-699e56dbb152',
+        description: 'Link to Dating Games article on Medium'
+    }
 );
 
 // Sections

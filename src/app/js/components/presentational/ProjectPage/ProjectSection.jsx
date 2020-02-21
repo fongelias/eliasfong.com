@@ -3,8 +3,8 @@ import { CollapsibleContainer, FlexBox } from '..';
 import { Project } from '.';
 
 const SectionBanner = ({name, onClick}) => (
-    <div onClick={onClick}>
-        <p>{name}</p>
+    <div onClick={onClick} className="projectSectionBanner">
+        <p className="projectSectionBanner__name">{name}</p>
     </div>
 )
 
@@ -17,7 +17,7 @@ export const ProjectSection = ({
     const toggleIsCollapsed = () => setIsCollapsed(initialState => !initialState);
 
     return (
-        <FlexBox column>
+        <FlexBox column className="maxWidth">
             <SectionBanner
                 name={name}
                 onClick={toggleIsCollapsed}
@@ -25,7 +25,10 @@ export const ProjectSection = ({
             <CollapsibleContainer isCollapsed={isCollapsed}>
                 {
                     projects.map(project => (
-                        <Project name={project.name}/>
+                        <Project
+                            name={project.name}
+                            link={project.link}
+                        />
                     ))
                 }
             </CollapsibleContainer>

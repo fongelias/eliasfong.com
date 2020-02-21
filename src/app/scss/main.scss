@@ -4,6 +4,7 @@
 	$light-grey: #9d9c9c;
 	$dark-grey: #323232;
 	$oat-milk: #f6f1eb;
+	$white: #ffffff;
 	$rust: #c33625;
 	$muted-rust: #c48077;
 	/*-- Fonts --*/
@@ -120,12 +121,37 @@ body {
 }
 
 .projectPage {
-	.projectContainer {
+	.projectPageContainer {
 		height: 80vh;
 	}
 }
 
-/*-- Layout Components --*/
+/*-- Layouts --*/
+.projectSectionList {
+	width: 100%;
+}
+
+.projectSectionBanner {
+	$blockName: 'projectSectionBanner';
+	width: 100%;
+
+	.#{$blockName}__name {
+		@extend .inlineLink;
+		font-size: 30px;
+		font-weight: 600;
+		text-align: center;
+	}
+
+	&:hover {
+		background-color: $white;
+	}
+}
+
+.projectContainer {
+	@extend .inlineLink;
+}
+
+/*-- Layout Utilities --*/
 .flexBox {
 	@include flexbox;
 	@include flex-direction(row);
@@ -145,4 +171,9 @@ body {
 	&.isCollapsed {
 		max-height: 0vh;
 	}
+}
+
+/*-- Spacing Utilities --*/
+.maxWidth {
+	width: 100%;
 }
