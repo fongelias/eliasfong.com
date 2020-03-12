@@ -142,8 +142,18 @@ body {
 		text-align: center;
 	}
 
+	&.isDisabled .#{$blockName}__name {
+		text-decoration: none;
+		cursor: default;
+		color: $light-grey;
+	}
+
 	&:hover {
 		background-color: $white;
+
+		&.isDisabled {
+			background-color: $oat-milk;
+		}
 	}
 }
 
