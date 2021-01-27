@@ -1,0 +1,18 @@
+@import 'scss/main.scss';
+
+$medium-weight-adjustment: 1.25;
+$nav-bar-height: $md-padding * 2 + ($sm-font-size * $medium-weight-adjustment);
+
+.navLink {
+	padding: $md-padding;
+	text-decoration: none;
+	cursor: pointer;
+	font-size: $sm-font-size;
+	font-weight: $mid-weight;
+	color: $black;
+	transition: easeInTransition(0.1s); 
+
+	&:hover {
+		color: $bleu;
+	}
+}

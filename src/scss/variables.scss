@@ -1,0 +1,43 @@
+/*-- Colors -- */
+$white: #ffffff;
+$black: #000000;
+$greyhound: #959595;
+$museum: #e9e8e3;
+$prada: #0a0f2c;
+$bleu: #3d64a3;
+$dijon: #ffbf00;
+$american-rose: #ff033e;
+$transparent: rgba(0,0,0,0);
+/*-- Typeography --*/
+    /*-- Fonts --*/
+    $font-family: 'Helvetica Neue', sans-serif;
+    $OpenSans: 'Open Sans', sans-serif;
+    /*-- Sizing --*/
+    $xs-font-size: 14px;
+    $sm-font-size: 20px;
+    $lg-font-size: 40px;
+    /*-- Weight --*/
+    $light-weight: 200;
+    $mid-weight: 400;
+    $heavy-weight: 600;
+/*-- Borders --*/
+    /*-- Color --*/
+    /*-- Radius --*/
+/*-- Spacing --*/
+    /*-- Padding --*/
+    $xs-padding: 3px;
+    $sm-padding: 5px;
+    $md-padding: 10px;
+    $lg-padding: 20px;
+    /*-- Margin --*/
+    $xs-margin: 3px;
+    $sm-margin: 5px;
+    $md-margin: 7px;
+    $lg-margin: 10px;
+/*-- Layout --*/
+    /*-- Sizing --*/
+    $default-page-width: 1000px;
+/*-- Animation --*/
+@function easeInTransition($seconds) {
+    @return ease-in $seconds;
+}

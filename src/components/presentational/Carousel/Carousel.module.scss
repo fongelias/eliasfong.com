@@ -1,0 +1,55 @@
+@import 'scss/main.scss';
+
+
+$pageContainerPadding: $md-padding;
+$image-size: 600px;
+$caption-size: 150px;
+$caption-offset: 35px;
+
+.carousel {
+	height: calc(100%);
+	width: 100%;
+}
+
+.pageContainer {
+	height: 100%;
+	width: calc(100% - #{$pageContainerPadding} * 2);
+	padding: 0 $pageContainerPadding;
+	position: relative;
+}
+
+.pageDescriptionContainer {
+	position: absolute;
+	transform: translateX(calc(-#{$image-size} / 2));
+	height: 100%;
+
+	.captionContainer {
+		background-color: $prada;
+		padding: $md-padding;
+		width: $caption-size;
+		transform: translateX($caption-offset);
+	}
+
+	.pageTitle {
+		margin: 0;
+		font-size: $xs-font-size;
+		font-weight: $heavy-weight;
+		color: $white;
+	}
+
+	.pageMedium {
+		margin: 0;
+		font-size: $xs-font-size;
+		font-weight: $mid-weight;
+		color: $white;
+	}
+}
+
+.imageContainer {
+	height: 100%;
+	width: 100%;
+}
+
+.pageImage {
+	height: $image-size;
+}
