@@ -24,5 +24,7 @@
   "include": [
     "src"
   ],
-  "exclude": ["**/*.test.*"]
+  "exclude": [
+    "**/*.test.*"
+  ]
 }
