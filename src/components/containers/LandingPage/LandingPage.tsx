@@ -46,6 +46,8 @@ export const LandingPage = () => {
     rotateSeats,
     rotateText,
     seatPositions,
+    viewportContext,
+    TABLE_ORIGIN,
   ]);
 
   return (
