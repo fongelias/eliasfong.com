@@ -8,11 +8,18 @@ export const coordinateCalc = (
   x: operation(coords1.x, coords2.x),
   y: operation(coords1.y, coords2.y),
   z: operation(coords1.z, coords2.z),
-  });
+});
 
-const diffCoords = (coords1: Coordinates, coords2: Coordinates) => coordinateCalc(coords1, coords2, (a, b) => a - b);
+export const equality = (coords1: Coordinates, coords2: Coordinates): boolean => {
+  const isXEqual = coords1.x === coords2.x;
+  const isYEqual = coords1.y === coords2.y;
+  const isZEqual = coords1.z === coords2.z;
+
+  return isXEqual && isYEqual && isZEqual;
+};
+// const diffCoords = (coords1: Coordinates, coords2: Coordinates) => coordinateCalc(coords1, coords2, (a, b) => a - b);
 const addCoords = (coords1: Coordinates, coords2: Coordinates) => coordinateCalc(coords1, coords2, (a, b) => a + b);
-const multiplyCoords = (coords1: Coordinates, coords2: Coordinates) => coordinateCalc(coords1, coords2, (a, b) => a * b);
-const transitionDirection = (coords1: Coordinates, coords2: Coordinates) => coordinateCalc(coords1, coords2, (a, b) => Math.sign(a - b));
+// const multiplyCoords = (coords1: Coordinates, coords2: Coordinates) => coordinateCalc(coords1, coords2, (a, b) => a * b);
+// const transitionDirection = (coords1: Coordinates, coords2: Coordinates) => coordinateCalc(coords1, coords2, (a, b) => Math.sign(a - b));
 
 export const transpose = addCoords;

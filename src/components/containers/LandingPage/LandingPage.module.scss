@@ -1,3 +1,10 @@
 .LandingPageContainer {
-  height: 100vh;
+  height: 100%;
+}
+
+.OptionName {
+  position: absolute;
+  bottom: 27vh;
+  width: 100%;
+  text-align: center;
 }
