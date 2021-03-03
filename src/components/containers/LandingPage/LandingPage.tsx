@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback, useContext, useMemo } from 'react';
 import { Canvas } from 'react-three-fiber';
 import { BasicBox } from 'components/presentational/three/BasicBox';
 import { useTurntableState } from 'utils/Coordinates/useTurntableState';
@@ -16,7 +16,7 @@ export const LandingPage = () => {
   // create seats
   const TABLE_SEATS = 3;
   const TABLE_RADIUS = 1.5;
-  const TABLE_ORIGIN = {x: 0, y: 0, z: 2};
+  const TABLE_ORIGIN = useMemo(() => ({x: 0, y: 0, z: 2}), []);
   const [seatPositions, rotateSeats] = useTurntableState(TABLE_SEATS, TABLE_RADIUS, TABLE_ORIGIN);
   // create text
   const [textState, rotateText] = useRotatingState([
