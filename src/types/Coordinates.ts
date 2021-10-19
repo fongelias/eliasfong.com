@@ -5,3 +5,5 @@ export interface Coordinates {
 };
 
 export type ThreeCoordinates = [number, number, number];
+
+export const ORIGIN: Coordinates = { x: 0, y: 0, z: 0 };

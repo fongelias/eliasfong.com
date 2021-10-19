@@ -1,16 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { LandingPage } from 'components/containers/LandingPage';
-import { PageContainer } from 'components/containers/PageContainer';
+import { WorldContainer } from 'components/containers/WorldContainer';
 import reportWebVitals from './reportWebVitals';
 
 import './index.scss'
 
 ReactDOM.render(
   <React.StrictMode>
-    <PageContainer>
-      <LandingPage />
-    </PageContainer>
+    <WorldContainer />
   </React.StrictMode>,
   document.getElementById('root')
 );

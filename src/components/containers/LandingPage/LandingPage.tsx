@@ -1,18 +1,14 @@
-import React, { useCallback, useContext, useMemo } from 'react';
-import { Canvas } from 'react-three-fiber';
+import React, { useCallback, useMemo, useContext} from 'react';
 import { BasicBox } from 'components/presentational/three/BasicBox';
 import { useTurntableState } from 'utils/Coordinates/useTurntableState';
 import { Coordinates } from 'types/Coordinates';
 import { equality } from 'utils/Coordinates/coordinateMath';
 import { useRotatingState } from 'utils/Hooks/useRotatingState';
-import { ViewportContext } from 'utils/Hooks/ViewportContext';
-
-import styles from './LandingPage.module.scss';
-
+import { CanvasContext, CanvasAPI } from 'utils/Hooks/CanvasContext';
 
 export const LandingPage = () => {
   // declare context
-  const viewportContext = useContext(ViewportContext);
+  const canvasContext: CanvasAPI = useContext(CanvasContext);
   // create seats
   const TABLE_SEATS = 3;
   const TABLE_RADIUS = 1.5;
@@ -38,32 +34,28 @@ export const LandingPage = () => {
     });
     // on click logic
     if (OBJECT_IS_CENTER) {
-      viewportContext.transition();
+      // camera.position.z = 10;
+      // camera.updateProjectionMatrix()
+      canvasContext.moveCamera();
     } else {
       rotateClockwise();
     }
   }, [
     rotateSeats,
     rotateText,
-    viewportContext,
     TABLE_ORIGIN,
   ]);
 
   return (
-    <div className={styles.LandingPageContainer}>
-      <Canvas>
-        <ambientLight />
-        {
-          seatPositions.map((positionState, key) => (
-            <BasicBox
-              key={key}
-              position={positionState}
-              onClick={onClickHandler}/>
-          ))
-        }
-        <pointLight position={[10, 10, 10]} />
-      </Canvas>
-      <h2 className={styles.OptionName}>{textState[0]}</h2>
-    </div>
+    <>
+      {
+        seatPositions.map((positionState, key) => (
+          <BasicBox
+            key={key}
+            position={positionState}
+            onClick={onClickHandler}/>
+        ))
+      }
+    </>
   )
 };
