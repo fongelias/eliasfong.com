@@ -1,1 +1,0 @@
-export { BasicPlane } from './BasicPlane';

@@ -1,2 +1,0 @@
-export { WorldContainer } from './WorldContainer';
-
