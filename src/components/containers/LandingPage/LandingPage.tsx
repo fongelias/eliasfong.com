@@ -1,61 +1,149 @@
-import React, { useCallback, useMemo, useContext} from 'react';
-import { BasicBox } from 'components/presentational/three/BasicBox';
-import { useTurntableState } from 'utils/Coordinates/useTurntableState';
-import { Coordinates } from 'types/Coordinates';
-import { equality } from 'utils/Coordinates/coordinateMath';
-import { useRotatingState } from 'utils/Hooks/useRotatingState';
-import { CanvasContext, CanvasAPI } from 'utils/Hooks/CanvasContext';
+import React, { useCallback, useState } from 'react';
+import './LandingPage.scss';
+import { FlexBox } from 'components/presentational/FlexBox/FlexBox';
+import cx from 'classnames';
+import { APIClient } from 'clients/apiClient';
 
-export const LandingPage = () => {
-  // declare context
-  const canvasContext: CanvasAPI = useContext(CanvasContext);
-  // create seats
-  const TABLE_SEATS = 3;
-  const TABLE_RADIUS = 1.5;
-  const TABLE_ORIGIN = useMemo(() => ({x: 0, y: 0, z: 2}), []);
-  const [seatPositions, rotateSeats] = useTurntableState(TABLE_SEATS, TABLE_RADIUS, TABLE_ORIGIN);
-  // create text
-  const [textState, rotateText] = useRotatingState([
-    'engineering',
-    'writing',
-    'photography',
-  ]);
-  // create click handler
-  const onClickHandler = useCallback((position: Coordinates) => {
-    // rotation definitions
-    const rotateClockwise = () => {
-      rotateSeats();
-      rotateText();
+
+export const LandingPagePath = "/";
+
+export enum MESSAGE_ORIGIN {
+  SELF,
+  API,
+}
+
+export interface MessageProps {
+  message: string,
+  origin: MESSAGE_ORIGIN,
+}
+
+export const Message = ({
+  message,
+  origin,
+}: MessageProps) => {
+  return (
+    <FlexBox
+      className='MessageContainer'
+      direction='column'
+      alignItems='center'>
+      <span className={cx('Origin')}>{origin === MESSAGE_ORIGIN.SELF? 'You' : 'Reception'}</span>
+      <span className={cx('Message')}>{message}</span>
+    </FlexBox>
+  )
+}
+
+
+export const Chat = () => {
+  // state
+  const [messagesState, setMessagesState] = useState([] as MessageProps[]);
+
+  // start a session on open if one does not exist
+  // useEffect(() => {
+  //   APIClient.getSession().then(console.log)
+  // })
+
+  // handlers
+  const addMessageToChat = useCallback((message: string, origin: MESSAGE_ORIGIN) => {
+    console.log(message);
+    if (message.trim() !== '') {
+      setMessagesState((initialState) => {
+        return [...initialState, {message, origin}];
+      });
     }
-    // position definitions
-    const OBJECT_IS_CENTER = equality(position, {
-      ...TABLE_ORIGIN,
-      z: TABLE_ORIGIN.z + TABLE_RADIUS,
-    });
-    // on click logic
-    if (OBJECT_IS_CENTER) {
-      // camera.position.z = 10;
-      // camera.updateProjectionMatrix()
-      canvasContext.moveCamera();
-    } else {
-      rotateClockwise();
-    }
-  }, [
-    rotateSeats,
-    rotateText,
-    TABLE_ORIGIN,
-  ]);
+  }, [setMessagesState]);
+
+  const emitMessage = async (message: string) => {
+    addMessageToChat(message, MESSAGE_ORIGIN.SELF);
+    const response = await APIClient.prompt(message);
+    addMessageToChat(response.message, MESSAGE_ORIGIN.API);
+  }
 
   return (
     <>
-      {
-        seatPositions.map((positionState, key) => (
-          <BasicBox
-            key={key}
-            position={positionState}
-            onClick={onClickHandler}/>
-        ))
-      }
+      <div className='Chat'>
+        <FlexBox
+          className='ChatInner'
+          direction='column'
+          alignItems='center'
+          justify='end'>
+          {
+            messagesState.map(({
+              message,
+              origin,
+            }, idx) => {
+              return (
+                <Message key={idx} message={message} origin={origin}/>
+              );
+            })
+          }
+          <ChatInput onSubmit={emitMessage}/>
+        </FlexBox>
+      </div>
     </>
-  )
-};
+  )};
+
+
+export interface ChatInputProps {
+  onSubmit: (message: string) => void;
+}
+
+export const ChatInput = ({
+  onSubmit,
+}: ChatInputProps) => {
+  // state
+  const [messageState, setMessageState] = useState('');
+
+  // handlers
+  const handleChange = (event: React.FormEvent<HTMLTextAreaElement>) => {
+    const eventValue = event.currentTarget.value;
+    setMessageState(eventValue);
+  }
+
+  const handleSubmit = () => {
+    onSubmit(messageState);
+    setMessageState('');
+  }
+
+  const handleKeyPress = (event: React.KeyboardEvent) => {
+    if(event.key === 'Enter') {
+      handleSubmit();
+    }
+  }
+
+  return (
+    <>
+      <div className='ChatInput'>
+        <FlexBox className='ChatInputInnerContainerVertical'
+          direction='column'
+          justify='center'
+          alignItems='center'>
+          <FlexBox className='ChatInputInnerContainerHorizontal'
+            alignItems='center'>
+            <textarea 
+              placeholder='ask me something'
+              value={messageState}
+              onChange={handleChange}
+              onKeyUp={handleKeyPress}
+              />
+            <div className='arrow-button' onClick={handleSubmit}>
+              <span className='arrowhead left'></span>
+              <span className='arrowhead right'></span>
+              <span className='arrowstem'></span>
+            </div>
+          </FlexBox>
+        </FlexBox>
+      </div>
+    </>
+  );
+}
+
+
+export const LandingPage = () => (
+  <>
+    <div className='LandingPage'>
+      <FlexBox className='LandingPageInner' direction='column' alignItems='center'>
+        <Chat/>
+      </FlexBox>
+    </div>
+  </>
+);
