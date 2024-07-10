@@ -13,10 +13,12 @@ export interface PromptResponse {
   message: string;
 }
 
+const deployed_endpoint = 'https://j5crdv65h5.execute-api.us-east-1.amazonaws.com/replica-prod/rag/'
+
 
 export class APIClient {
   public static prompt(message: string): Promise<PromptResponse> {
-    return fetch(`${API_BASE_URL}${API_ENDPOINTS.AI_RAG_GRAPH}`, {
+    return fetch(deployed_endpoint, {
       method: HTTP_METHODS.POST,
       headers: {
         [HTTP_HEADERS.CONTENT_TYPE]: 'application/json',
