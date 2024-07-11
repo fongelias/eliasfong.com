@@ -35,6 +35,7 @@ export class APIClient {
     }).then((resp) => {
       // check for and store token
       const token = resp.headers.get('Authorization')?.split(' ')[1];
+      console.log(resp.headers, token)
       if (token) {
         localStorage.setItem('jwt', token);
       }
