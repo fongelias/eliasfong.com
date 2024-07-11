@@ -18,14 +18,27 @@ const deployed_endpoint = 'https://j5crdv65h5.execute-api.us-east-1.amazonaws.co
 
 export class APIClient {
   public static prompt(message: string): Promise<PromptResponse> {
+    // check for and add token to headers
+    const token = localStorage.getItem('jwt');
+    const headers: { [key: string]: string } = {
+      [HTTP_HEADERS.CONTENT_TYPE]: 'application/json',
+    }
+    if (token) {
+      headers[HTTP_HEADERS.AUTHORIZATION] = `Bearer ${token}`
+    }
+
     return fetch(deployed_endpoint, {
       method: HTTP_METHODS.POST,
-      headers: {
-        [HTTP_HEADERS.CONTENT_TYPE]: 'application/json',
-      },
+      headers,
       credentials: 'include',
       body: JSON.stringify({message})
     }).then((resp) => {
+      // check for and store token
+      const token = resp.headers.get('Authorization')?.split(' ')[1];
+      if (token) {
+        localStorage.setItem('jwt', token);
+      }
+      // return resp
       return resp.json();
     }).catch(err => console.log(err))
   }

@@ -5,6 +5,7 @@ export enum HTTP_METHODS {
 
 export enum HTTP_HEADERS {
   CONTENT_TYPE = 'Content-Type',
+  AUTHORIZATION = 'Authorization',
 }
 
 export enum HTTP_CONTENT_TYPE {
