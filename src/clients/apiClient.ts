@@ -19,28 +19,30 @@ const deployed_endpoint = 'https://j5crdv65h5.execute-api.us-east-1.amazonaws.co
 export class APIClient {
   public static prompt(message: string): Promise<PromptResponse> {
     // check for and add token to headers
-    const token = localStorage.getItem('jwt');
     const headers: { [key: string]: string } = {
       [HTTP_HEADERS.CONTENT_TYPE]: 'application/json',
     }
-    if (token) {
-      headers[HTTP_HEADERS.AUTHORIZATION] = `Bearer ${token}`
+    const body: { [key: string]: string } = { message }
+    // add conversation token to body if it exists
+    const conversation_token = sessionStorage.getItem('conversation_token')
+    if(conversation_token) {
+      body['conversation'] = conversation_token
     }
 
     return fetch(deployed_endpoint, {
       method: HTTP_METHODS.POST,
       headers,
       credentials: 'include',
-      body: JSON.stringify({message})
+      body: JSON.stringify(body)
     }).then((resp) => {
-      // check for and store token
-      const token = resp.headers.get('Authorization')?.split(' ')[1];
-      console.log(resp.headers, token)
-      if (token) {
-        localStorage.setItem('jwt', token);
-      }
-      // return resp
       return resp.json();
+    }).then(body => {
+      // add conversation token to storage if it exists
+      if (body.conversation_token) {
+        sessionStorage.setItem('conversation_token', body.conversation_token)
+      }
+
+      return body
     }).catch(err => console.log(err))
   }
 
