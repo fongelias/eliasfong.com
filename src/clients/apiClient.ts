@@ -26,7 +26,7 @@ export class APIClient {
     // add conversation token to body if it exists
     const conversation_token = sessionStorage.getItem('conversation_token')
     if(conversation_token) {
-      body['conversation'] = conversation_token
+      body['conversation_token'] = conversation_token
     }
 
     return fetch(deployed_endpoint, {
