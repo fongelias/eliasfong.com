@@ -1,0 +1,58 @@
+@import 'scss/main.scss';
+
+.ArchitecturePage {
+  .ArchitecturePageInner {
+    max-width: 1000px;
+    width: calc(100% - $xl-padding * 4);
+    padding: calc($xl-padding * 4);
+
+
+    .BasicRagImage {
+      max-width: 450px;
+    }
+
+    .ParameterComparisionImage {
+      max-width: 650px;
+    }
+
+    .ComputeComparisionImage {
+      max-width: 800px;
+    }
+
+    .GptResponseImage {
+      max-width: 600px;
+    }
+
+    .RagIllustrationImage {
+      max-width: 1000px;
+    }
+
+    .BaseGraphImage {
+      max-width: 800px;
+    }
+
+    .ReplicaGraphImage {
+      max-width: 1000px;
+    }
+
+    .LocalArchImage {
+      max-width: 600px;
+    }
+    
+    .BloomGraphImage {
+      max-width: 800px;
+    }
+
+    .Neo4jConversationTreesImage {
+      max-width: 800px;
+    }
+
+    .Neo4jConversationTreeImage {
+      max-width: 800px;
+    }
+
+    .FinalArchImage {
+      max-width: 600px;
+    }
+  }
+}

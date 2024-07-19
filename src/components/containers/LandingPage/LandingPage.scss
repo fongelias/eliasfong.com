@@ -8,6 +8,19 @@ $spaceBetweenInputAndButton: $xl-margin;
   width: 100vw;
 }
 
+.EmptyChatMessage {
+  position: absolute;
+  font-size: $xs-font-size;
+  color: $stainless-steel;
+  height: 100vh;
+  width: 100vw;
+  pointer-events: none;
+
+  .EmptyChatMessageInner {
+    text-align: center;
+  }
+}
+
 .Chat {
   max-width: 1000px;
   height: calc(100vh - $xl-padding * 2);
@@ -45,6 +58,7 @@ $spaceBetweenInputAndButton: $xl-margin;
     outline: none;
     margin-right: $spaceBetweenInputAndButton;
     border: 0px;
+    background-color: $transparent;
   }
 }
 
@@ -70,6 +84,7 @@ $spaceBetweenInputAndButton: $xl-margin;
   
   .arrowhead {
     background-color: $base-black;
+    opacity: 1;
     height: 15px;
     width: 4px;
     display: inline-block;
@@ -93,12 +108,14 @@ $spaceBetweenInputAndButton: $xl-margin;
     background-color: $base-black;
     display: inline-block;
     position: absolute;
+    border: 0px;
     top: 10px;
     left: 20px;
   }
 
   &:hover {
     background-color: $dust;
+    cursor: pointer;
 
     .arrowhead, .arrowstem {
       background-color: $prussian;
@@ -110,6 +127,39 @@ $spaceBetweenInputAndButton: $xl-margin;
 
     .arrowhead, .arrowstem {
       background-color: $active-black;
+    }
+  }
+
+  &.isDisabled {
+    cursor: wait;
+
+    .arrowstem {
+      border: 4px solid $dust; /* Light grey */
+      border-top: 4px solid $base-black; /* Blue */
+      background-color: $base-white;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      left: 5px;
+      top: 5px;
+      animation: spin 2s linear infinite;
+    }
+
+    .arrowhead {
+      opacity: 0;
+    }
+
+    &:hover {
+      background-color: $base-white;
+  
+      .arrowhead, .arrowstem {
+        background-color: $base-white;
+      }
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   }
 }

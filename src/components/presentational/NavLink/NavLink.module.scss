@@ -1,0 +1,74 @@
+@import 'scss/main.scss';
+
+.NavLink {
+  position: absolute;
+  font-size: $xs-font-size;
+  height: calc($xs-font-size + 12px);
+  width: 100%;
+
+  .Inner {
+    text-decoration: none;
+    color: $base-black;
+    background-color: $rice-paper;
+  }
+
+  &.Top {
+    &:hover {
+      background-color: $dust;
+      cursor: pointer;
+  
+      .Inner {
+        color: $prussian;
+      }
+    }
+  }
+
+  &.left, &.right {
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+    
+    .Inner {
+      width: calc($xs-font-size + 12px);
+      min-height: 50vh;
+      pointer-events: all;
+
+      .LinkText {
+        position: absolute;
+        display: inline-block;
+        min-width: 50vh;
+        text-align: center;
+        line-height: calc($xs-font-size + 12px);
+      }
+    }
+
+    &:hover {
+      .Inner {
+        background: linear-gradient($transparent, $heavy-dust, $transparent);
+        color: $prussian;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &.right {
+    .Inner {
+      .LinkText {
+        rotate: 90deg;
+        transform-origin: left bottom;
+      }
+    }
+  }
+  
+  &.left {
+    .Inner {
+      .LinkText {
+        rotate: -90deg;
+        transform-origin: left bottom;
+        left: calc($xs-font-size + 12px);
+        bottom: 25vh;
+      }
+    }
+  }
+}

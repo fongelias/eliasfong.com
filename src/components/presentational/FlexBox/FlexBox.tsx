@@ -14,6 +14,7 @@ type FlexWrap =
     'wrap-reverse';
 
 type FlexJustify =
+    'start' |
     'end' |
     'center' |
     'space-between' |

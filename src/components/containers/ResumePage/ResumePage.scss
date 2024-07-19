@@ -1,0 +1,9 @@
+@import 'scss/main.scss';
+
+.ResumePage {
+  .ResumePageInner {
+    max-width: 1000px;
+    width: calc(100% - $xl-padding * 4);
+    padding: calc($xl-padding * 4);
+  }
+}
