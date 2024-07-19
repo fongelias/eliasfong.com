@@ -72,7 +72,6 @@ export const Chat = () => {
   const emitMessage = async (message: string) => {
     addMessageToChat(message, MESSAGE_ORIGIN.SELF);
     setLoadingState(true)
-    setTimeout(() => setLoadingState(false), 5000)
     const response = await APIClient.prompt(message);
     setLoadingState(false)
     addMessageToChat(response.message, MESSAGE_ORIGIN.API);
