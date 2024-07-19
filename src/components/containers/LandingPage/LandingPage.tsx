@@ -69,12 +69,16 @@ export const Chat = () => {
     }
   }, [setMessagesState]);
 
-  const emitMessage = async (message: string) => {
+  const emitMessage = (message: string) => {
     addMessageToChat(message, MESSAGE_ORIGIN.SELF);
     setLoadingState(true)
-    const response = await APIClient.prompt(message);
-    setLoadingState(false)
-    addMessageToChat(response.message, MESSAGE_ORIGIN.API);
+    APIClient.prompt(message).then(response => {
+      setLoadingState(false)
+      addMessageToChat(response.message, MESSAGE_ORIGIN.API);
+    }).catch(err => {
+      console.log(err)
+      setLoadingState(false)
+    });
   }
 
   return (
