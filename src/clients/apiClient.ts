@@ -43,7 +43,12 @@ export class APIClient {
       }
 
       return body
-    }).catch(err => console.log(err))
+    }).catch(err => {
+      return {
+        message: 'Hmmm, seems like something went wrong. Can you try asking something else?',
+        err,
+      };
+    })
   }
 
   // public static getSession(): Promise<any> {
